@@ -1,0 +1,205 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Django Developer | Portfolio</title>
+    <meta name="description" content="Professional Python Django Developer Portfolio and Website Marketplace">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" type="image/x-icon"
+      href="{% static 'images/saad_portfolio_favicon.ico' %}">
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="#home" class="logo">SAAD<span>.</span>DEV</a>
+    <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#sale">Websites For Sale</a>
+        <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-btn">Hire Me</a>
+</nav>
+
+<section class="hero" id="home">
+    <div class="hero-content">
+        <p class="green">HELLO, WORLD! I'M A DEVELOPER</p>
+        <h1>Building Digital<br>Experiences With<br><span>Python & Django.</span></h1>
+        <p class="description">
+            I develop modern websites, business management systems
+            and professional web applications.
+        </p>
+        <div class="hero-buttons">
+            <a href="#projects" class="btn">Explore Projects</a>
+            <a href="{% url 'contact' %}" class="btn">Contact</a>
+        </div>
+        <div class="skills">
+            <span>Python</span>
+            <span>Django</span>
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+            <span>Database</span>
+        </div>
+    </div>
+    <div class="hero-card">
+        <div class="code-header">
+            <span>●</span><span>●</span><span>●</span>
+            <small>developer.py</small>
+        </div>
+        <pre>
+class Developer:
+    name = "Saad"
+    skills = [
+        "Python",
+        "Django",
+        "HTML",
+        "CSS"
+    ]
+
+    def build(self):
+        return "Amazing Websites!"
+        </pre>
+        <p class="terminal">> Ready to build your next project_</p>
+    </div>
+</section>
+
+<section class="section" id="about">
+    <p class="green">ABOUT ME</p>
+    <h2>Turning Ideas Into <span>Reality</span></h2>
+    <p class="section-text">
+        I am a web developer focused on building useful,
+        modern and responsive web applications using Python,
+        Django, HTML, CSS and databases.
+    </p>
+    <div class="info-grid">
+        <div class="info-card">
+            <h3>Python</h3>
+            <p>Backend development</p>
+        </div>
+        <div class="info-card">
+            <h3>Django</h3>
+            <p>Web applications</p>
+        </div>
+        <div class="info-card">
+            <h3>HTML & CSS</h3>
+            <p>Modern web design</p>
+        </div>
+        <div class="info-card">
+            <h3>Database</h3>
+            <p>Data management</p>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="projects">
+    <p class="green">MY WORK</p>
+    <h2>Featured <span>Projects</span></h2>
+
+    <div class="project-card">
+        <div class="project-image">LED FACTORY</div>
+        <div class="project-content">
+            <span class="tag">DJANGO PROJECT</span>
+            <h3>LED Factory Management</h3>
+            <p>
+                A business management system for LED factories,
+                including products, stock, customers, purchases,
+                orders and invoices.
+            </p>
+            <div class="project-tech">
+                Python · Django · PostgreSQL · HTML · CSS
+            </div>
+            <a href="https://u54ffhm8-django-led-factory.apps-2.websson.cloud"
+               target="_blank" rel="noopener noreferrer" class="btn">
+                View Live Website ↗
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="sale">
+    <p class="green">WEBSITE MARKETPLACE</p>
+    <h2>Websites For <span>Sale</span></h2>
+
+    <p class="section-text">
+        Find professional websites for your business.
+        Choose a website and contact us to purchase.
+    </p>
+
+    <div class="info-grid">
+
+        {% for website in websites %}
+
+        <div class="info-card sale-card">
+
+            {% if website.image %}
+                <img src="{{ website.image.url }}"
+                     alt="{{ website.name }}"
+                     style="width:100%; height:190px; object-fit:cover; border-radius:8px;">
+            {% endif %}
+
+            <h3>{{ website.name }}</h3>
+
+            <p>{{ website.description }}</p>
+
+            <h3 class="price">
+                Rs. {{ website.price }}
+            </h3>
+
+            {% if website.demo_url %}
+                <a href="{{ website.demo_url }}"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="btn-outline">
+                    Live Demo
+                </a>
+            {% endif %}
+
+            <br><br>
+
+            <a href="{% url 'checkout' website.pk %}" class="btn">
+                  Buy Now
+            </a>
+
+        </div>
+
+        {% empty %}
+
+        <div class="info-card">
+            <h3>No Websites Available</h3>
+            <p>New websites will be listed here soon.</p>
+        </div>
+
+        {% endfor %}
+
+    </div>
+</section>
+
+
+<section class="section contact" id="contact">
+    <p class="green">GET IN TOUCH</p>
+    <h2>Let's Build Something <span>Great!</span></h2>
+    <p class="section-text">
+        Have a project or want to purchase a website?
+        Contact me through the links below.
+    </p>
+
+    <div class="social-links">
+        <a href="https://wa.me/923495311678">WhatsApp</a>
+        <a href="https://www.tiktok.com/@skullbreaker59">TikTok</a>
+        <a href="https://www.facebook.com/profile.php?id=61573592343532">Facebook</a>
+        <a href="https://www.youtube.com/@SaadSaad-r4q5w">YouTube</a>
+    </div>
+    <p class="email">Email: ss5944532@gmail.com</p>
+</section>
+
+<footer>
+    <p>© 2026 SAAD.DEV | Built with Python & Django</p>
+</footer>
+
+</body>
+</html>

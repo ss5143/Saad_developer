@@ -1,0 +1,55 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me | SAAD.DEV</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<section class="section">
+    <p class="green">GET IN TOUCH</p>
+    <h2>Contact <span>Me</span></h2>
+
+    <div class="info-card" style="max-width:550px;margin:30px auto;text-align:left;">
+
+        {% if error %}
+            <p style="color:#f87171;">{{ error }}</p>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <p style="margin:15px 0;">
+                <label>Your Name</label>
+                <input type="text" name="name" placeholder="Enter your name" required>
+            </p>
+
+            <p style="margin:15px 0;">
+                <label>Your Email</label>
+                <input type="email" name="email" placeholder="Enter your email" required>
+            </p>
+
+            <p style="margin:15px 0;">
+                <label>Your Message</label>
+                <textarea name="message" rows="5" placeholder="Write your message..." required></textarea>
+            </p>
+
+            <button type="submit" class="btn">
+                Send via WhatsApp
+            </button>
+        </form>
+
+        <p style="color:#94a3b8;margin-top:20px;">
+            Your WhatsApp will open with your message ready to send.
+        </p>
+
+        <a href="/" class="btn-outline">Back to Home</a>
+    </div>
+</section>
+
+</body>
+</html>

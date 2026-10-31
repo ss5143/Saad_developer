@@ -1,0 +1,55 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Checkout</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<section class="section">
+    <p class="green">SECURE CHECKOUT</p>
+    <h2>Purchase <span>Website</span></h2>
+
+    <div class="info-card" style="max-width:550px;margin:30px auto;text-align:left;">
+
+        <h3>{{ website.name }}</h3>
+        <p>{{ website.description }}</p>
+
+        <h2 class="price">PKR {{ website.price }}</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            {% for field in form %}
+                <p style="margin:15px 0;">
+                    <label>{{ field.label }}</label><br>
+                    {{ field }}
+                    {% for error in field.errors %}
+                        <small style="color:#f87171;">{{ error }}</small>
+                    {% endfor %}
+                </p>
+            {% endfor %}
+
+            <p style="margin:15px 0;">
+                Payment Method: <strong>WhatsApp</strong>
+            </p>
+
+            <button type="submit" class="btn">
+                Confirm Order
+            </button>
+        </form>
+
+        <div class="coming-soon">
+            Easypaisa — Coming Soon
+        </div>
+
+        <a href="/" class="btn-outline">Back to Home</a>
+    </div>
+</section>
+
+</body>
+</html>
